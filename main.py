@@ -13,10 +13,9 @@ def create_secret_code(choice_list, len):
 
 
 def Check_code(secret_code, input_code):
-    print("Checking the input secret code with the correct one...")
     solution = []
     if secret_code == input_code:
-        return solution
+        return None
 
     for idx, c in enumerate(input_code):
         if c in secret_code:
@@ -45,18 +44,28 @@ if __name__ == "__main__":
     print("New secret code is created, please start writing some codes to check the result.")
     print("Legend: (R)ed, (B)lue, (Y)ellow, (G)reen, (W)hite, (O)range")
 
-    for i in range(1, attemps+1):
-        print("Attemps: %d/%d" % (i, attemps))
+    all_attemps, all_solutions = [], []
+    for a in range(1, attemps+1):
+        print("Attemps: %d/%d" % (a, attemps))
         code = input()
 
-        while len(code) > scode_length or len(code) == 0:
+        while len(code) != scode_length:
             print("Input charecters should be 4!")
             code = input()
 
         input_code = [c.upper() for c in code]
         solution = Check_code(secret_code, input_code)
 
-        if len(solution) == 0:
+        all_attemps.append(input_code)
+        all_solutions.append(solution)
+
+        if solution is None:
             print("You win!")
             break
-        print("The feedback solution is: ", solution)
+
+        for i, n in enumerate(all_attemps):
+            print(n, "--", all_solutions[i])
+
+        if a == attemps:
+            print("You lose!")
+            print("The solution is %s" % secret_code)
