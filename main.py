@@ -59,3 +59,4 @@ if __name__ == "__main__":
         if len(solution) == 0:
             print("You win!")
             break
+        print("The feedback solution is: ", solution)
