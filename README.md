@@ -2,7 +2,7 @@
 
 This is a python mastermind game
 
-## How to run the game
+## How to run the game
 
 1. install the requirements: ` pip install -r requirements.txt `
 
